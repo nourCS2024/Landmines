@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALMASAR | Safe Ground. Sustainable Life.</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* -----------------------------------------------------------
+           1. DESIGN SYSTEM & RESET
+        ----------------------------------------------------------- */
+        :root {
+            /* Colors */
+            --primary-red: #ec3353;
+            --primary-yellow: #ffcf35;
+            --olive-green: #acb68f;
+            --deep-green: #a6ad38;
+            --dark-brown: #643820;
+            --white: #ffffff;
+            --light-gray: #f4f4f4;
+
+            /* Fonts */
+            --font-title: 'Bebas Neue', cursive;
+            --font-sub: 'Montserrat', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--dark-brown);
+            overflow-x: hidden;
+            background-color: var(--white);
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-title);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        h3 {
+            font-family: var(--font-sub);
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* -----------------------------------------------------------
+           2. UI COMPONENTS & ANIMATIONS
+        ----------------------------------------------------------- */
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            font-family: var(--font-sub);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-red);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(236, 51, 83, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(236, 51, 83, 0.6);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--dark-brown);
+            color: var(--dark-brown);
+        }
+
+        .btn-outline:hover {
+            background: var(--dark-brown);
+            color: var(--white);
+        }
+
+        /* Scroll Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Pulse Animation for Danger */
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(236, 51, 83, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(236, 51, 83, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(236, 51, 83, 0); }
+        }
+
+        /* -----------------------------------------------------------
+           3. NAVIGATION
+        ----------------------------------------------------------- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: background 0.4s ease, padding 0.4s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: var(--dark-brown);
+            padding: 15px 5%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .navbar .logo {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Logo Icon Styles */
+        .logo-icon {
+            width: 20px;
+            height: 20px;
+            background: var(--primary-yellow);
+            transform: rotate(45deg);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-family: var(--font-sub);
+            font-size: 0.9rem;
+            color: var(--white);
+            font-weight: 600;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-yellow);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* -----------------------------------------------------------
+           4. HERO SECTION
+        ----------------------------------------------------------- */
+        .hero {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 10%;
+            /* Background Image */
+            background: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            overflow: hidden;
+        }
+
+        /* Overlay */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(172, 182, 143, 0.85) 0%, rgba(100, 56, 32, 0.4) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            color: var(--white);
+        }
+
+        .hero h1 {
+            font-size: 6rem; /* Huge title like reference */
+            line-height: 0.9;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .hero-tagline {
+            font-family: var(--font-sub);
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            padding-left: 20px;
+            border-left: 4px solid var(--primary-yellow);
+        }
+
+        /* Decorative "Card" look similar to reference */
+        .hero-card {
+            position: absolute;
+            right: 10%;
+            bottom: 15%;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 350px;
+            z-index: 2;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            display: none; /* Hidden on mobile, shown on desktop */
+        }
+
+        .hero-card h3 {
+            color: var(--dark-brown);
+            font-size: 1.2rem;
+        }
+        
+        .hero-card p {
+            color: #555;
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .hero-card .stat {
+            font-family: var(--font-title);
+            font-size: 3rem;
+            color: var(--deep-green);
+        }
+
+        /* -----------------------------------------------------------
+           5. SECTION A: THE THREAT (Danger)
+        ----------------------------------------------------------- */
+        .section-threat {
+            padding: 100px 10%;
+            background-color: var(--white);
+            text-align: center;
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 span {
+            color: var(--primary-red);
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .danger-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            position: relative;
+            transition: transform 0.3s;
+            border-bottom: 5px solid var(--primary-red);
+        }
+
+        .danger-card:hover {
+            transform: translateY(-10px);
+            animation: pulse-red 2s infinite;
+        }
+
+        .card-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: filter 0.3s;
+        }
+
+        .danger-card:hover .card-img {
+            filter: grayscale(0%);
+        }
+
+        .card-body {
+            padding: 25px;
+            text-align: left;
+        }
+
+        .card-icon {
+            color: var(--primary-red);
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* -----------------------------------------------------------
+           6. SECTION B: OUR MISSION (Hope/Roots)
+        ----------------------------------------------------------- */
+        .section-mission {
+            background-color: var(--olive-green);
+            padding: 100px 10%;
+            color: var(--dark-brown);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 50px;
+            overflow: hidden;
+        }
+
+        .mission-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .mission-visual {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+
+        .mission-img-main {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border: 5px solid var(--white);
+        }
+
+        .mission-stat-badge {
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            background: var(--white);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .mission-stat-badge h4 {
+            font-family: var(--font-title);
+            font-size: 2.5rem;
+            color: var(--deep-green);
+            line-height: 1;
+        }
+
+        .mission-stat-badge span {
+            font-family: var(--font-sub);
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--dark-brown);
+        }
+
+        /* -----------------------------------------------------------
+           7. SECTION C: PARTNERS (Grid)
+        ----------------------------------------------------------- */
+        .section-partners {
+            padding: 80px 10%;
+            background-color: var(--light-gray);
+            text-align: center;
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .partner-box {
+            background: transparent;
+            border: 2px solid var(--deep-green);
+            padding: 30px 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--font-sub);
+            font-weight: 700;
+            color: var(--deep-green);
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .partner-box:hover {
+            background: var(--deep-green);
+            color: var(--white);
+            transform: scale(1.05);
+        }
+
+        /* -----------------------------------------------------------
+           8. FOOTER
+        ----------------------------------------------------------- */
+        footer {
+            background-color: var(--dark-brown);
+            color: var(--white);
+            padding: 60px 10% 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-sub);
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-yellow);
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-yellow);
+        }
+
+        .funding-note {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* -----------------------------------------------------------
+           9. RESPONSIVE MEDIA QUERIES
+        ----------------------------------------------------------- */
+        @media (min-width: 1024px) {
+            .hero-card {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 4rem;
+            }
+
+            .navbar {
+                padding: 15px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                right: -100%;
+                background-color: var(--dark-brown);
+                flex-direction: column;
+                width: 200px;
+                padding: 20px;
+                transition: 0.4s;
+                border-radius: 0 0 0 10px;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .section-mission {
+                flex-direction: column;
+            }
+            
+            .mission-stat-badge {
+                left: 0;
+                bottom: -30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="logo">
+            <div class="logo-icon"></div>
+            ALMASAR
+        </a>
+        <div class="menu-toggle" id="mobile-menu">
+            &#9776;
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#threat">The Threat</a></li>
+            <li><a href="#mission">Our Mission</a></li>
+            <li><a href="#partners">Coalition</a></li>
+            <li><a href="#footer">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
+        <div class="hero-content reveal">
+            <h1>Safe Ground.<br>Sustainable Life.</h1>
+            <p class="hero-tagline">Transforming fields of danger into roots of hope.</p>
+            <a href="#footer" class="btn btn-primary">Report a Hazard</a>
+        </div>
+        
+        <!-- Floating Glass Card (Desktop only) -->
+        <div class="hero-card reveal">
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                <div class="stat">12k+</div>
+                <h3>Mines<br>Cleared</h3>
+            </div>
+            <p>From blueprints of war to renders of nature. We reclaim the soil, one square meter at a time.</p>
+        </div>
+    </section>
+
+    <!-- SECTION A: THE THREAT -->
+    <section class="section-threat" id="threat">
+        <div class="section-header reveal">
+            <h2>The Silent <span>Threat</span></h2>
+            <p>Hidden beneath the surface, danger waits. But knowledge is our first line of defense.</p>
+        </div>
+
+        <div class="card-grid">
+            <!-- Card 1 -->
+            <div class="danger-card reveal">
+                <img src="https://images.unsplash.com/photo-1628151015968-3a4429e9ef04?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Warning Sign" class="card-img">
+                <div class="card-body">
+                    <span class="card-icon">&#9888;</span> <!-- Warning Symbol -->
+                    <h3>Invisible Danger</h3>
+                    <p>Landmines remain active for decades. They disrupt agriculture and endanger communities long after conflict ends.</p>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="danger-card reveal">
+                <img src="https://images.unsplash.com/photo-1596334335899-7d04f114c000?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Barren Land" class="card-img">
+                <div class="card-body">
+                    <span class="card-icon">&#9760;</span> <!-- Skull Symbol -->
+                    <h3>Lost Potential</h3>
+                    <p>Thousands of hectares of fertile soil are abandoned. What could be olive groves is currently a "No Go" zone.</p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="danger-card reveal">
+                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Community Risk" class="card-img">
+                <div class="card-body">
+                    <span class="card-icon">&#128683;</span> <!-- Prohibited Symbol -->
+                    <h3>Community Isolation</h3>
+                    <p>Mines cut off villages from water sources, schools, and markets, stifling economic growth and safety.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION B: THE MISSION -->
+    <section class="section-mission" id="mission">
+        <div class="mission-text reveal">
+            <h2>From Danger<br>To <span style="color: var(--white);">Life</span></h2>
+            <h3>Restoring the Roots of the Land</h3>
+            <p>At ALMASAR, we don't just clear mines; we reclaim the future. Our mission combines technical demining with agricultural rehabilitation.</p>
+            <p>By removing explosive remnants of war, we allow farmers to return to their fields. We plant olive trees—symbols of peace and resilience—where warning signs once stood. This creates a sustainable ecosystem that supports both nature and the local economy.</p>
+            <a href="#partners" class="btn btn-outline" style="border-color: var(--dark-brown); color: var(--dark-brown);">Join The Coalition</a>
+        </div>
+
+        <div class="mission-visual reveal">
+            <img src="https://images.unsplash.com/photo-1508264165352-258db2ebd59b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Olive Tree" class="mission-img-main">
+            <div class="mission-stat-badge">
+                <h4>100%</h4>
+                <span>SAFE SOIL</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION C: PARTNERS -->
+    <section class="section-partners" id="partners">
+        <div class="section-header reveal">
+            <h2>Our <span style="color: var(--deep-green)">Partners</span></h2>
+            <p>United for a mine-free world.</p>
+        </div>
+        <div class="partners-grid reveal">
+            <div class="partner-box">HAMAP Humanitaire</div>
+            <div class="partner-box">University of Balamand</div>
+            <div class="partner-box">ALMASAR</div>
+            <div class="partner-box">Beeatoona</div>
+            <div class="partner-box">LMAC</div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h1>ALMASAR</h1>
+                <p>Clearing the path for a safer tomorrow.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#threat">The Threat</a></li>
+                    <li><a href="#mission">Our Mission</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <p>info@almasar-project.org</p>
+                <p>+961 1 234 567</p>
+                <br>
+                <a href="#" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.8rem;">Donate Now</a>
+            </div>
+        </div>
+        <div class="funding-note">
+            <p>Funded by the Ministry of Europe and Foreign Affairs.</p>
+            <p>&copy; 2023 ALMASAR. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Navigation Scroll Effect
+            const navbar = document.getElementById('navbar');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // 2. Mobile Menu Toggle
+            const menuToggle = document.getElementById('mobile-menu');
+            const navLinks = document.getElementById('nav-links');
+
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Close mobile menu when a link is clicked
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // 3. Scroll Reveal Animation using Intersection Observer
+            const revealElements = document.querySelectorAll('.reveal');
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Optional: Stop observing once revealed
+                        // observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.15, // Trigger when 15% of element is visible
+                rootMargin: "0px"
+            });
+
+            revealElements.forEach(el => {
+                revealObserver.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
