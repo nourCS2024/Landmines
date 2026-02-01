@@ -1,0 +1,17 @@
+{
+  "name": "landmines-website",
+  "version": "1.0.0",
+  "description": "ALMASAR - Safe Ground. Sustainable Life.",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx http-server -p 8000 -c-1",
+    "start": "npx http-server -p 8000 -c-1"
+  },
+  "keywords": [
+    "landmines",
+    "demining",
+    "humanitarian"
+  ],
+  "author": "",
+  "license": "MIT"
+}
