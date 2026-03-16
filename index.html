@@ -29,8 +29,8 @@
             <li><a href="#hero">Home</a></li>
             <li><a href="#threat">The Threat</a></li>
             <li><a href="#mission">Our Mission</a></li>
-            <li><a href="#partners">Coalition</a></li>
-            <li><a href="#footer">Contact</a></li>
+            <li><a href="#partners">Our Partners</a></li>
+            <li><a href="#message-box">Contact</a></li>
         </ul>
     </nav>
 
@@ -39,7 +39,7 @@
         <div class="hero-content reveal">
             <h1>Safe Ground.<br>Sustainable Life.</h1>
             <p class="hero-tagline">Transforming fields of danger into roots of hope.</p>
-            <a href="#footer" class="btn btn-primary">Report a Hazard</a>
+            <a href="#message-box" class="btn btn-primary">Report a Hazard</a>
         </div>
         
         <!-- Floating Glass Card (Desktop only) -->
@@ -99,7 +99,6 @@
             <h3>Restoring the Roots of the Land</h3>
             <p>At ALMASAR, we don't just clear mines; we reclaim the future. Our mission combines technical demining with agricultural rehabilitation.</p>
             <p>By removing explosive remnants of war, we allow farmers to return to their fields. We plant olive trees—symbols of peace and resilience—where warning signs once stood. This creates a sustainable ecosystem that supports both nature and the local economy.</p>
-            <a href="#partners" class="btn btn-outline" style="border-color: var(--dark-brown); color: var(--dark-brown);">Join The Coalition</a>
         </div>
 
         <div class="mission-visual reveal">
@@ -117,41 +116,118 @@
             <h2>Our <span style="color: var(--deep-green)">Partners</span></h2>
             <p>United for a mine-free world.</p>
         </div>
-        <div class="partners-grid reveal">
-            <div class="partner-box">HAMAP Humanitaire</div>
-            <div class="partner-box">University of Balamand</div>
-            <div class="partner-box">ALMASAR</div>
-            <div class="partner-box">Beeatoona</div>
-            <div class="partner-box">LMAC</div>
+        <div class="marquee-wrapper reveal">
+            <div class="marquee-track">
+                <!-- First set -->
+                <div class="marquee-item">
+                    <img src="assets/Exe_Logo-France SANS TM + DRAPEAU CENTRE_Rvb.png" alt="Ministry of Europe and Foreign Affairs" class="partner-logo">
+                </div>
+                <div class="marquee-item">
+                    <img src="assets/LMAC.webp" alt="LMAC" class="partner-logo">
+                </div>
+                <div class="marquee-item">
+                    <img src="assets/Logo_Beeatoona.jpg" alt="Beeatoona" class="partner-logo">
+                </div>
+                <div class="marquee-item">
+                    <img src="assets/UOB.jpg" alt="University of Balamand" class="partner-logo">
+                </div>
+                <div class="marquee-item">
+                    <img src="assets/Logo MEAE_RVB.jpeg" alt="Ministry of Europe" class="partner-logo">
+                </div>
+                <!-- Second set - duplicate for seamless loop -->
+                <div class="marquee-item">
+                    <img src="assets/Exe_Logo-France SANS TM + DRAPEAU CENTRE_Rvb.png" alt="Ministry of Europe and Foreign Affairs" class="partner-logo">
+                </div>
+                <div class="marquee-item">
+                    <img src="assets/LMAC.webp" alt="LMAC" class="partner-logo">
+                </div>
+                <div class="marquee-item">
+                    <img src="assets/Logo_Beeatoona.jpg" alt="Beeatoona" class="partner-logo">
+                </div>
+                <div class="marquee-item">
+                    <img src="assets/UOB.jpg" alt="University of Balamand" class="partner-logo">
+                </div>
+                <div class="marquee-item">
+                    <img src="assets/Logo MEAE_RVB.jpeg" alt="Ministry of Europe" class="partner-logo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUICK MESSAGE BOX -->
+    <section class="quick-message-box" id="message-box">
+        <div class="message-container reveal">
+            <h3>Quick Message</h3>
+            <p>Have an urgent update? Send us a quick message.</p>
+            <form id="quick-message-form" class="quick-form">
+                <input 
+                    type="email" 
+                    id="quick-message-email" 
+                    name="email" 
+                    placeholder="Your email address..." 
+                    required>
+                <input 
+                    type="text" 
+                    id="quick-message-subject" 
+                    name="subject" 
+                    placeholder="Subject..." 
+                    required>
+                <textarea 
+                    id="quick-message-text" 
+                    name="message" 
+                    placeholder="Your message here..." 
+                    rows="3"
+                    required>
+                </textarea>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+            <div id="quick-message-success" class="alert alert-success" style="display: none; margin-top: 15px;">
+                <p>✓ Message sent successfully!</p>
+            </div>
+            <div id="quick-message-error" class="alert alert-error" style="display: none; margin-top: 15px;">
+                <p>✗ Failed to send message. Please try again.</p>
+            </div>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer id="footer">
-        <div class="footer-content">
-            <div class="footer-col">
-                <h1>ALMASAR</h1>
-                <p>Clearing the path for a safer tomorrow.</p>
+        <div class="footer-top">
+            <div class="footer-col footer-brand">
+                <h2 class="footer-logo">ALMASAR</h2>
+                <p class="footer-tagline">Clearing the path for a safer tomorrow.</p>
             </div>
+            
             <div class="footer-col">
-                <h4>Navigation</h4>
-                <ul>
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
                     <li><a href="#hero">Home</a></li>
                     <li><a href="#threat">The Threat</a></li>
                     <li><a href="#mission">Our Mission</a></li>
+                    <li><a href="#partners">Our Partners</a></li>
+                    <li><a href="#message-box">Contact</a></li>
                 </ul>
             </div>
+            
             <div class="footer-col">
-                <h4>Contact Us</h4>
-                <p>info@almasar-project.org</p>
-                <p>+961 1 234 567</p>
-                <br>
-                <a href="#" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.8rem;">Donate Now</a>
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/search/pages?q=HAMAP-Humanitaire%20in%20Lebanon%20%2F%20au%20Liban" class="social-icon facebook" title="Facebook">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                    <a href="https://x.com/HAMAP_lebanon" class="social-icon x" title="X">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.6l-5.165-6.75-5.95 6.75h-3.308l7.73-8.835L2.56 2.25h6.772l4.67 6.177 5.482-6.177zM17.15 18.75h1.83L5.71 5.1H3.75z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/hamap_humanitaire_lebanon/" class="social-icon instagram" title="Instagram">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="funding-note">
-            <p>Funded by the Ministry of Europe and Foreign Affairs.</p>
-            <p>&copy; 2023 ALMASAR. All rights reserved.</p>
+        <div class="footer-divider"></div>
+        <div class="footer-bottom">
+            <p class="funding-note">Funded by the Ministry of Europe and Foreign Affairs.</p>
+            <p class="copyright">&copy; 2026 ALMASAR. All rights reserved.</p>
         </div>
     </footer>
 
